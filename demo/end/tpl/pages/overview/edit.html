@@ -1,0 +1,51 @@
+<div class="box box-primary" style='overflow-x: auto;'>
+    <div class="box-header with-border">
+        <button id="overview_save" type="button" class="btn btn-primary"><i class="fa fa-floppy-o"></i>  保存</button>
+        <button id="overview_cancel" type="button" class="btn btn-primary">取消</button>
+    </div>
+    <div class="box-body">
+        <div class="table-responsive"  style="max-width: 800px; margin: 0 auto; padding-left: -10%;">
+            <table class="table no-border">
+                <tr>
+                    <td class="text-right" style="width: 60px;">标题：</td>
+                    <td><input type="text" class="form-control overview_title" /></td>
+                </tr>
+                <tr>
+                    <td class="text-right">图片：</td>
+                    <td class="pics">
+                        <div class="Icons">
+                            <div class='gb shopIcon'>
+                                <div class="progress progress-striped processes">
+                                    <div class="progress-bar progress-bar-success pgb" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="zz"></div>
+                                <div class="shopAddIcon">+</div>
+                                <img class="shopShowIcon" src="" />
+                                <div class="shopDelIcon"><i class='fa fa-times'></i></div>
+                            </div>
+                            <input type="file" class="shopFile" style="display: none" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right"></td>
+                    <td><button class="btn-sm btn-success overview_add_pic">添加图片</button>  <button class="btn-sm btn-success overview_del_pic">删除图片</button> <span style="color: red;" class="overview_msg"></span></td>
+                </tr>
+                <tr>
+                    <td class="text-right">内容：</td>
+                    <td>
+                        <textarea class="form-control overview_content" style="min-height: 260px;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    seajs.use("pages/overview/edit.js", function (overview) {
+        overview.init()
+    })
+</script>
+

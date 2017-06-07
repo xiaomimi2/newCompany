@@ -1,0 +1,41 @@
+公告接口
+URL：http://www.aifavor.com/backend/notice  POST请求
+
+传参  json格式  示例{"action" :“getAllNotice”，"data":"{"title":?,   
+                                           		"content":?,
+                                           		"pic":?}"
+     参数说明   action  固定值  getAllNotice   获取所以公告信息     data无需传参
+				getNoticeById  通过ID获取指定公告信息  data :{"id":?}	
+				saveOrUpdateNotice  增加或者修改公告  data:  {  “id":?,  如果增加不需要id参数
+										"title":?,# 标题  
+                                           					"content":?,#内容
+                                           					"pic":?  }  #图片
+返回 {"rescode":"200","info":[]}  rescode：正常200   错误404
+{'content': [{'content': u'testone', 'upTime': '2017-06-05', 'pic': u'https://www.aifavor.com/resource/ftrg32rr4t.jpg', 'id': 1L, 'title': u'test'}], 'rescode': '200'}
+
+
+
+直播接口
+URL  http:www.aifavor.com/backend/live  POST请求
+无需参数
+返回 {"rescode":"200","content":[]}
+{'content': [{'url': u'rtp://@239.49.0.6:9574', 'flag': 0, 'pic': None, 'id': 1L, 'name': u'cctv6'}, {'url': u'rtp://@239.49.0.3:9566', 'flag': 0, 'pic': None, 'id': 2L, 'name': u'CCTV3'}], 'rescode': '200'}
+
+/home/ubuntu/favor/frontend/test
+介绍接口 
+URL www.aifavor.com/backend/introduce POST请求
+
+传参  json格式  示例  {"action" :“getAllNotice”，"data":"{"title":?,   
+                                           		"content":?,
+                                           		"pic":?}"
+
+参数说明     action  固定值  getAllCategory  获取所有分类   data  无需参数
+				addCategory   添加分类  data  {"name":?,"”des":?}  name：分类名称  des： 分类描述
+				deleteCategory  删除分类   data  {"id"：?}
+				getIntroduceBycategoryId   根据分类Id获取介绍信息  data  {"categoryId":""}  
+				updateOrSaveIntroduce  增加或删除介绍信息  data   title   标题
+                      								  content   内容 
+                        							  pic      图片
+                        							  category_id  分类I
+{'content': [{'title': u'\u6559\u5b66\u697c', 'pic': u'https://www.aifavor.com/resource/fgrewfe.jpg', 'content': u'\u5386\u53f2\u60a0\u4e45\u7684\u6559\u5b66\u697c', 'category_id': 1L, 'id': 1L, 'category_name': u'\u6559\u5b66\u697c'}, 
+{'title': u'\u56fe\u4e66\u9986', 'pic': u'https://www.aifavor.com/resource/fgrewfe.jpg', 'content': u'\u5386\u53f2\u60a0\u4e45\u7684\u56fe\u4e66\u9986', 'category_id': 2L, 'id': 2L, 'category_name': u'\u56fe\u4e66\u9986'}], 'rescode': '200'}

@@ -9,20 +9,10 @@
     <meta content="telephone=no" name="format-detection">
     <meta content="email=no" name="format-detection">
     <title>长沙学院</title>
-
-    <link rel="stylesheet" href="dist/css/jqPaginator.css" />
-
-    <link rel="stylesheet" href="dist/css/index.css" />
-    <link rel="stylesheet" href="dist/css/pages/claim.css" />
-    <link rel="stylesheet" href="dist/css/pages/live.css" />
-    <link rel="stylesheet" href="dist/css/pages/introduction.css">
-    <link rel="stylesheet" href="dist/css/iconfont.css" />
-
-    <script src="dist/js/common/rem.js"></script>
-    <script src="dist/js/common/jquery.min.js"></script>
-    <script src="dist/js/common/jqPaginator.min.js"></script>
-    <script src="dist/js/common/layout.js"></script>
-
+    <link rel="stylesheet" href="dist/css/all.css">
+    <script src="https://cdn.bootcss.com/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="dist/js/public.js"></script>
+    
     <!--[if lt IE 9]-->
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
@@ -34,42 +24,119 @@
         <div class="logo"></div>
         <ul class="nav">
             <li class="treeview">
-                <a href="#claim" id="claim"><i class="iconfont icon-gonggao"></i>公告</a>
+                <a href="#claim" id="claim"><i class="iconfont icon-lingdang"></i>公告</a>
             </li>
             <li class="treeview">
-                <a href="#live" id="live"><i class="iconfont icon-zhiboguanli"></i>直播</a>
+                <a href="#live" id="live"><i class="iconfont icon-zhibo"></i>直播</a>
             </li>
             <li class="treeview treedown">
-                <a href="#introduction" id="introduction"><i class="iconfont icon-jieshao"></i>介绍 <i class="iconfont icon-jiantouarrow487 pullDown"></i></a>
+                <a href="#introduction" id="introduction"><i class="iconfont icon-wendang"></i>介绍 <i class="iconfont icon-arrow487 pullDown"></i></a>
                 <div class="tree-layout">
                     <ul class="treeview-menu">
-                        <li >
-                            <a href="#library">图书馆</a>
-                        </li>
-                        <li>
-                            <a href="#research">科研楼</a>
-                        </li>
-                        <li>
-                            <a href="#teaching">教学楼</a>
-                        </li>
-                        <li>
-                            <a href="#meeting">会议室</a>
-                        </li>
-                        <li>
-                            <a href="#lake">校园湖</a>
-                        </li>
-                        <li>
-                            <a href="#canteen">食堂</a>
-                        </li>
                     </ul>
                 </div>
             </li>
         </ul>
     </div>
-    <div class="content">
-     
-    </div>
+    <div class="content">    </div>
    
+    
+    <script type="text/template" id="claim-tem">
+        <div class="claim">
+            <div class="header">
+                <div class="name" >2017年长沙学院最新教务公告</div>
+            </div>
+            <div class="main">
+                <div class="layout">
+                    <h2><span>相关公告</span></h2>
+                    <ul id="claimList">
+                    <% _.each(data, function(n) {%>
+                        <li data-id="<%= n.id %>"><span><%= n.title %></span> <a><%= n.upTime %></a></li>
+                    <% }) %>
+                    </ul>
+                    <div class="pgLayout">
+                        <ul id="pagination"></ul>
+                    </div>
+                    <div style="width: 100%; height: 1px;"></div>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="introduction-tem">
+        <div class="introuduction">
+            <ul class="treeview-menu">
+                <% _.each(names, function(name,index) { 
+                if(index === 0) {   %>
+                    <li class="active">
+                        <a href="#<%= name%>"><%= name %></a>
+                    </li>
+                <% } else {%>
+                    <li>
+                        <a href="#<%= name%>"><%= name %></a>
+                    </li>
+                <% }})%>
+            </ul>
+            <h1><span><%= data.title %></span></h1>
+            <p><%= data.content %></p>
+            <%  if(typeof data.pic !== 'string') {  
+                _.each(data.pic, function (img) { %>
+            <div class="overlook-img">
+                <img src="<%= img %>" alt="图1">
+            </div>
+            <%}) } else {%>
+                <div class="overlook-img">
+                <img src="<%= data.pic %>" alt="图1">
+            </div>
+            <%}%>
+        </div>
+    </script>
+    <script type="text/template" id="live-tem">
+        <div class="live">
+            <div class="main">
+                <div class="video">
+                    <video controls="controls" webkit-playsinline="true" src="<%= data[0].url %>" >
+                        您的浏览器不支持 video 标签。
+                    </video>
+                </div>
+                <div class="channelList">
+                    <div class="chanel-mobile">
+                        <h1>直播频道</h1>
+                        <p>点击下方电视频道观看直播&nbsp;&nbsp;&nbsp;<span>当前频道：<i class="current-channel"><%= data[0].name %></i></span></p>
+                    </div>
+                    <div class="channle-pc">请进行频道选择</div>
+                    <ul>
+                        <% _.each(data, function(video) {%>
+                            <li><a href="javascript:;" data-src="<%= video.url %>" data-id = "<%= video.id %>"><%= video.name %></a><span class="playon">正在直播</span><span class="towatch iconfont icon-arrow487"></span></li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </script>
+    <script type="text/template" id="claim-detail-tem">
+        <div class="claim-detail">
+           <h1><%= data.title %></h1>
+            <small>发布时间：<%= data.upTime %>  责任编辑：<%= data.editPerson %> 阅读次数：<%= data.readCount %>）</small>
+            <hr>
+            <p>各教学院（部）：</p>
+            <p><%= data.content %></p>
+             <address>
+                <% var arr = data.agency.split(',') 
+                    _.each(arr, function (dep){
+                %>
+                    <span><%= dep %></span><br>
+                <% }) %>
+                <span><%= data.upTime %></span>
+            </address>
+            <hr>
+            <div class="download">
+                <% _.each(data.attachs, function(dow){ %>
+                    <a href="<%= dow.source_url %>" class="iconfont" data-id="<%= dow.material_id %>" data-type="<%= dow.type %>"><%= dow.name %></a>
+                <% }) %>
+            </div>
+            <p class="backtoclaim"><a href="#claim">[返回公告首页]</a></p>
+        </div>
+    </script>
     <script src="dist/js/index.js"></script>
 </body>
 </html>

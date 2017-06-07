@@ -1,0 +1,12 @@
+<div class="box box-primary">
+	<% data.forEach(function (item) { %>
+		<div class="box-header">
+		<h3 class="box-title"><%= item.title %></h3>
+		<div class="box-tools pull-right">
+			<span class="label label-warning"><%= item.uptime%></span>
+			<a href="#claim-edit" class="btn btn-primary" data-id="<%= item.id %>">编辑</a>
+		</div>
+	</div>
+	<% })%>
+	
+</div>

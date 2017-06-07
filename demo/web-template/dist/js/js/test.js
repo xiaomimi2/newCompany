@@ -1,0 +1,1 @@
+"use strict";var test=require("common/templates.js");$("#app").html(test({data:"test"}));

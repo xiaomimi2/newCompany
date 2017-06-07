@@ -1,0 +1,31 @@
+<button class="btn btn-danger" id="deletetype">删除此类</button>
+<form action="" class="form-horizontal">
+	<div class="form-group">
+		<label for="" class="col-sm-2 control-label">建筑名称</label>
+		<div class="col-sm-4">
+			<input type="text" class="form-control" value="<%= data.title %>"> 
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="col-sm-2 control-label">正文</label>
+		<div class="col-sm-10">
+			<textarea type="text" class="form-control" value="<%= data.content %>"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="" class="col-sm-2 control-label">图片</label>
+		<% if(typeof data.pic === 'string') { %>
+		<div class="col-sm-10">
+			<div class="col-xs-4 img-wrapper"><img src="dist/img/school-2.png" alt="" class="img-responsive"><span class="glyphicon glyphicon-remove delete"></span></div>
+		</div>
+		<% } else {%>
+		<div class="col-sm-10">
+			<% data.pic.forEach(function(img){%>
+			<div class="col-xs-4 img-wrapper"><img src="dist/img/school-2.png" alt="" class="img-responsive"><span class="glyphicon glyphicon-remove delete"></span></div>
+			<%})%>
+		</div>
+		<% } %>
+	</div>
+	</div>
+	<div class="form-group text-center"><button class="btn btn-success">确定</button>&nbsp;&nbsp;<button class="btn btn-danger">取消</button></div>
+</form>

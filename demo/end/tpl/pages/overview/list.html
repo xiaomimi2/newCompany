@@ -1,0 +1,35 @@
+<div class="box box-primary" style='overflow-x: auto;'>
+    <div class="box-header with-border">
+        <button id="overview_edit" type="button" class="btn btn-primary"><i class="fa fa-edit"></i>  编辑</button>
+    </div>
+    <div class="box-body">
+        <div class="table-responsive"  style="max-width: 800px; margin: 0 auto; padding-left: -10%;">
+            <table class="table no-border">
+                <tr>
+                    <td class="text-right" style="width: 60px;">标题：</td>
+                    <td  class="overview_title"></td>
+                </tr>
+                <tr>
+                    <td class="text-right">图片：</td>
+                    <td class="overview_img">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-right">内容：</td>
+                    <td class="overview_content" style="white-space: pre-wrap; text-indent: 30px;">
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    seajs.use("pages/overview/list.js", function (overview) {
+        overview.init()
+    })
+</script>
+
